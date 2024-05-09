@@ -10,7 +10,7 @@ const context: UserContextModel = {
   signIn: () => {
     return;
   },
-  isSignedIn: false
+  isSignedIn: false,
 };
 
 export const UserContext = createContext<UserContextModel>(context);
@@ -22,10 +22,12 @@ interface UserContextProviderProps {
 export const UserContextProvider = ({ children }: UserContextProviderProps): JSX.Element | null => {
   const [username, setUsername] = useState<string>();
 
+  console.log('askjdfhlkajhsdflkjhklahsdjkfhakjlsdhfljkhalkjsd');
+
   const contextValue = {
     username,
     signIn: setUsername,
-    isSignedIn: Boolean(username)
+    isSignedIn: Boolean(username),
   };
 
   return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
