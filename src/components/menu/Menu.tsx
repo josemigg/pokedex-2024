@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { Button } from './components/button/Button';
-import { SignUp } from './views/auth/SignUp';
+import { Button } from '../button/Button';
+import { SignUp } from '../../views/auth/SignUp';
 
 export const Menu = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [showSignUp, setShowSignUp] = useState(false);
   const [search, setSearch] = useState('');
@@ -41,9 +41,11 @@ export const Menu = () => {
         <div className="flex gap-3">
           <Button
             block
-            disabled
             className={i18n.language === 'es' ? 'font-bold' : ''}
-            onClick={() => i18n.changeLanguage('es')}
+            onClick={() => {
+              console.log('estoy aqui');
+              i18n.changeLanguage('es');
+            }}
           >
             Español
           </Button>
@@ -52,12 +54,12 @@ export const Menu = () => {
           </Button>
         </div>
         <form
-          onSubmit={(event) => {
+          onSubmit={event => {
             event.preventDefault();
             navigate(`/?search=${search}`);
           }}
         >
-          <input placeholder="Search pokemons" value={search} onChange={(event) => setSearch(event.target.value)} />
+          <input placeholder="Search pokemons" value={search} onChange={event => setSearch(event.target.value)} />
         </form>
         <div className="flex gap-3 items-center">
           <NavLink to="/">Listado</NavLink>

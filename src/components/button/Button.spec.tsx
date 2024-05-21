@@ -30,6 +30,7 @@ describe('Button', () => {
   it('Should disabled the button when the prop is true', () => {
     render(<Button disabled />);
     const button = screen.getByRole('button');
+    const button2 = screen.getByRole('button');
 
     expect(button).toBeInTheDocument();
     expect(button).not.toBeEnabled();
