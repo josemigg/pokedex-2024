@@ -4,7 +4,7 @@ import { UserContext } from '../../contexts/UserContextProvider';
 import { PokemonListItem } from '../../models';
 import './pokemon-list.css';
 
-interface PokemonListItemProps {
+export interface PokemonListItemProps {
   pokemon: PokemonListItem;
   onFavPokemonClick: (pokemonId: number) => void;
   onHidePokemonClick: (pokemonId: number) => void;
@@ -22,7 +22,7 @@ export const PokemonListItemDetails = (props: PokemonListItemProps) => {
     event.stopPropagation();
 
     if (!isSignedIn) {
-      alert('logeate bro');
+      console.log('logeate bro');
       return;
     }
     onFavPokemonClick(pokemon.id);
