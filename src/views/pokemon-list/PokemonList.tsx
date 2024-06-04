@@ -8,11 +8,13 @@ import { DEFAULT_FILTERS } from './pokemonListReducer';
 import { useTranslation } from 'react-i18next';
 import { Dialog } from '../../components/dialog/Dialog';
 import './pokemon-list.css';
+import { ComponentChorra } from './ComponentChorra';
 
 export const PokemonList = () => {
   const [params] = useSearchParams();
   const searchFromParam = params.get('search');
   const [show, setShow] = useState(false);
+  const [contador, setContador] = useState(0);
   const prevSearchFromParam = useRef('');
   const { tagsAvailable, filteredPokemon, limit, pokemons, setLimit, setPokemons, filters, setFilters } =
     usePokemonList();
@@ -118,6 +120,8 @@ export const PokemonList = () => {
 
   return (
     <div className="list">
+      <ComponentChorra key={contador} contador={contador} />
+      <button onClick={() => setContador(contador + 1)}>Incrementar contador</button>
       <div className="mt-10 mb-10 flex justify-end">
         {t('list:pluralizationExample', { count: filters.tags?.length ?? 0 })}
 
@@ -147,12 +151,12 @@ export const PokemonList = () => {
           <div className="mb-2">
             <p className="font-bold">{t('list:filters.tags')}</p>
             <div className="flex flex-wrap gap-4">
-              {tagsAvailable.map((tag) => (
+              {tagsAvailable.map(tag => (
                 <label key={tag} className="flex gap-3">
                   <input
                     type="checkbox"
                     checked={Boolean(filters.tags?.includes(tag))}
-                    onChange={(event) => handleOnTagChanged(event.target.checked, tag)}
+                    onChange={event => handleOnTagChanged(event.target.checked, tag)}
                   />
                   {tag}
                 </label>
@@ -162,12 +166,12 @@ export const PokemonList = () => {
           <div className="mb-2">
             <p className="font-bold">Gender</p>
             <div className="flex flex-wrap gap-4">
-              {Object.values(PokemonGender).map((gender) => (
+              {Object.values(PokemonGender).map(gender => (
                 <label key={gender}>
                   <input
                     type="checkbox"
                     className="mr-2"
-                    onChange={(event) => handleOnGenderChange(event.target.checked, gender)}
+                    onChange={event => handleOnGenderChange(event.target.checked, gender)}
                   />
                   {t(`list:filters.genderOptions.${gender}`)}
                 </label>

@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useState } from 'react';
 
-interface UserContextModel {
+export interface UserContextModel {
   username?: string;
   signIn: (username: string) => void;
   isSignedIn: boolean;
@@ -21,8 +21,6 @@ interface UserContextProviderProps {
 
 export const UserContextProvider = ({ children }: UserContextProviderProps): JSX.Element | null => {
   const [username, setUsername] = useState<string>();
-
-  console.log('askjdfhlkajhsdflkjhklahsdjkfhakjlsdhfljkhalkjsd');
 
   const contextValue = {
     username,

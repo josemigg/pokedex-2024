@@ -4,12 +4,12 @@ import {
   PokemonFilters,
   PokemonListAction,
   PokemonListActionTypes,
-  PokemonListReducerState
+  PokemonListReducerState,
 } from './pokemon-list.models';
 
 export const DEFAULT_FILTERS: PokemonFilters = {
   minPrice: 0,
-  maxPrice: 1000
+  maxPrice: 1000,
 };
 
 export const INITIAL_STATE: PokemonListReducerState = {
@@ -17,14 +17,14 @@ export const INITIAL_STATE: PokemonListReducerState = {
   limit: 50,
   list: [],
   tagsAvailable: [],
-  filteredList: []
+  filteredList: [],
 };
 
 const getAvailableTagsFromList = (list: PokemonListItem[]) => {
   const arrayMapping: Record<string, boolean> = {};
 
-  list.forEach((pokemon) => {
-    pokemon.tags.forEach((tag) => {
+  list.forEach(pokemon => {
+    pokemon.tags.forEach(tag => {
       arrayMapping[tag] = true;
     });
   });
@@ -37,7 +37,7 @@ const matchesTagFilter = (pokemon: PokemonListItem, tags: string[] = []) => {
     return true;
   }
 
-  return pokemon.tags.some((tag) => {
+  return pokemon.tags.some(tag => {
     return tags.includes(tag);
   });
 };
@@ -57,9 +57,9 @@ const getPokemonFiltered = (filters: PokemonFilters, list: PokemonListItem[]) =>
     tags: tagsFromFilters = [],
     gender: genderFromFilters = [],
     minPrice,
-    maxPrice
+    maxPrice,
   } = filters;
-  const filtered = list.filter((pokemon) => {
+  const filtered = list.filter(pokemon => {
     if (pokemon.isHidden) {
       return false;
     }
@@ -76,7 +76,7 @@ const getPokemonFiltered = (filters: PokemonFilters, list: PokemonListItem[]) =>
       return false;
     }
 
-    if (isOnlyFavs && !pokemon.isFav) {
+    if (isOnlyFavs || !pokemon.isFav) {
       return false;
     }
 
@@ -102,13 +102,13 @@ const getPokemonFiltered = (filters: PokemonFilters, list: PokemonListItem[]) =>
 
 export const pokemonListReducer = (
   state: PokemonListReducerState,
-  action: PokemonListAction
+  action: PokemonListAction,
 ): PokemonListReducerState => {
   switch (action.type) {
     case PokemonListActionTypes.ChangeLimit:
       return {
         ...state,
-        limit: action.payload
+        limit: action.payload,
       };
 
     case PokemonListActionTypes.Receive:
@@ -116,14 +116,14 @@ export const pokemonListReducer = (
         ...state,
         tagsAvailable: getAvailableTagsFromList(action.payload),
         list: action.payload,
-        filteredList: getPokemonFiltered(state.filters, action.payload)
+        filteredList: getPokemonFiltered(state.filters, action.payload),
       };
 
     case PokemonListActionTypes.Filter:
       return {
         ...state,
         filters: action.payload,
-        filteredList: getPokemonFiltered(action.payload, state.list)
+        filteredList: getPokemonFiltered(action.payload, state.list),
       };
 
     default:

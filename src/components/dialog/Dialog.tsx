@@ -18,7 +18,7 @@ export const Dialog = ({
   contentClassName = '',
   size = 'md',
   children,
-  show
+  show,
 }: DialogProps) => {
   if (!show) {
     return null;
@@ -29,7 +29,7 @@ export const Dialog = ({
       <div
         className={classNames({
           dialog: true,
-          [className]: className
+          [className]: className,
         })}
       >
         <div className="dialog-overlay" onClick={onOverlayClick} />
@@ -37,13 +37,13 @@ export const Dialog = ({
           className={classNames({
             dialog__content: true,
             [`dialog__content--${size}`]: size,
-            [contentClassName]: contentClassName
+            [contentClassName]: contentClassName,
           })}
         >
           {children}
         </div>
       </div>
     </>,
-    document.body
+    document.body,
   );
 };

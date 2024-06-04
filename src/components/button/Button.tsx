@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, memo } from 'react';
 import classNames from 'classnames';
 import './buttons.scss';
 
@@ -12,31 +12,33 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
 }
 
-export const Button = ({
-  className = '',
-  loading,
-  disabled,
-  size = 'md',
-  color,
-  block,
-  variant = 'outlined',
-  children,
-  ...rest
-}: ButtonProps) => {
-  const classes = classNames({
-    btn: true,
-    [className]: className,
-    'btn--block': block,
-    'btn--disabled': disabled,
-    'btn--loading': loading,
-    [`btn--${size}`]: size,
-    [`btn--${color}`]: color,
-    [`btn--${variant}`]: variant
-  });
+export const Button = memo(
+  ({
+    className = '',
+    loading,
+    disabled,
+    size = 'md',
+    color,
+    block,
+    variant = 'outlined',
+    children,
+    ...rest
+  }: ButtonProps) => {
+    const classes = classNames({
+      'btn': true,
+      [className]: className,
+      'btn--block': block,
+      'btn--disabled': disabled,
+      'btn--loading': loading,
+      [`btn--${size}`]: size,
+      [`btn--${color}`]: color,
+      [`btn--${variant}`]: variant,
+    });
 
-  return (
-    <button className={classes} disabled={disabled} {...rest}>
-      {children}
-    </button>
-  );
-};
+    return (
+      <button className={classes} disabled={disabled} {...rest}>
+        {children}
+      </button>
+    );
+  },
+);

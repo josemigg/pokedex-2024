@@ -48,13 +48,16 @@ export const PokemonListItemDetails = (props: PokemonListItemProps) => {
         <p>{pokemon.gender}</p>
         <i
           className="fa fa-heart"
+          aria-label="fav pokemon"
           onClick={handleFavClick}
           style={{ color: pokemon.isFav ? 'red' : 'black', cursor: 'pointer' }}
+          role="button"
         />{' '}
         <i
           className="fa fa-bomb"
           onClick={handleHideClick}
           style={{ color: pokemon.isHidden ? 'red' : 'black', cursor: 'pointer' }}
+          role="button"
         />
       </div>
     </Link>
