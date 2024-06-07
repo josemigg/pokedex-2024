@@ -1,0 +1,13 @@
+.icon {
+  /* Flow with text content */
+  display: inline-block;
+
+  /* Inherit the parent text color */
+  fill: currentColor;
+  height: 1em;
+  width: 1em;
+  vertical-align: middle;
+  position: relative;
+  overflow: hidden;
+  pointer-events: none;
+}

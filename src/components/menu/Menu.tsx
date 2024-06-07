@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Button } from '../button/Button';
 import { SignUp } from '../../views/auth/SignUp';
+import { Icon } from '../icons';
+import './menu.scss';
 
 export const Menu = () => {
   const { t, i18n } = useTranslation();
@@ -47,9 +49,11 @@ export const Menu = () => {
               i18n.changeLanguage('es');
             }}
           >
+            <Icon id="youtube" />
             Español
           </Button>
           <Button className={i18n.language === 'en' ? 'font-bold' : ''} onClick={() => i18n.changeLanguage('en')}>
+            <Icon id="volume-high" className="red big" />
             Inglés
           </Button>
         </div>

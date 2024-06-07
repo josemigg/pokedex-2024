@@ -7,11 +7,6 @@ export const App = () => {
   const styles = { border: 'black', background: 'red' };
   const styles1 = { border: '1px solid #fff' };
 
-  const result = { ...styles1, ...styles };
-  /*
-   { border: '1px solid #fff', background: 'red' }
-  */
-
   return (
     <div>
       <UserContextProvider>
@@ -22,7 +17,7 @@ export const App = () => {
 
         <UserInfo />
         <div>
-          <pre>{JSON.stringify({ ...styles1, ...styles }, null, 2)}</pre>
+          <Outlet />
         </div>
       </UserContextProvider>
     </div>
