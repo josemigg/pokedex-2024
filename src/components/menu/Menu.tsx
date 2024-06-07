@@ -49,11 +49,11 @@ export const Menu = () => {
               i18n.changeLanguage('es');
             }}
           >
-            <Icon id="youtube" />
+            <Icon id="auction" className="other-icon" />
             Español
           </Button>
           <Button className={i18n.language === 'en' ? 'font-bold' : ''} onClick={() => i18n.changeLanguage('en')}>
-            <Icon id="volume-high" className="red big" />
+            <Icon id="volume-high" className="one-icon" />
             Inglés
           </Button>
         </div>
